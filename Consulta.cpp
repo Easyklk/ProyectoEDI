@@ -10,34 +10,23 @@
 #include "Paciente.h"
 #include "fechayhora.h"
 
-#include <iostream>
-#include <string>
-
-using namespace std;
-
 Consulta::Consulta() {
 	// TODO Auto-generated constructor stub
 	p = nullptr;
 	m = nullptr;
 	tipo = Vacio;
-	alta = false;
-	informe = "";
 }
 
 Consulta::Consulta(Paciente *p) {
 	this->p = p;
 	m = nullptr;
 	tipo = Vacio;
-	alta = false;
-	informe = "";
 }
 
 Consulta::Consulta(Paciente *p, Medico *m) {
 	this->p = p;
 	this->m = m;
 	tipo = Vacio;
-	alta = false;
-	informe = "";
 }
 
 Consulta::Consulta(Paciente *p, Medico *m, const TipoConsulta &tc,
@@ -46,8 +35,6 @@ Consulta::Consulta(Paciente *p, Medico *m, const TipoConsulta &tc,
 	this->m = m;
 	hora = f;
 	tipo = tc;
-	alta = false;
-	informe = "";
 }
 
 void Consulta::asignarMedico(Medico *m) {
@@ -55,13 +42,6 @@ void Consulta::asignarMedico(Medico *m) {
 }
 
 void Consulta::agendarFecha(FechaYHora f) {
-}
-
-void Consulta::darDeAlta() {
-	this->alta = true;
-}
-
-void Consulta::adjuntarInforme() {
 }
 
 void Consulta::mostrar() {
@@ -81,8 +61,7 @@ void Consulta::mostrar() {
 	p->mostrar();
 	m->mostrar();
 	hora.mostrar();
-	cout << ", Tipo de Consulta: " << tipo << "Alta: " << alta << ", Informe: "
-			<< informe << "}" << endl << endl;
+	cout << " }" << endl;
 
 }
 

@@ -25,8 +25,8 @@ public:
 	void mostrarPaciente();
 	void mostrarConsulta();
 	void mostrarMedico();
-	Paciente buscarP(string apellidos);
-	Medico* buscarM(string apellidos);
+	Paciente* buscarPaciente(string apellidos);
+	Medico* buscarMedico(string apellidos);
 	void cargarPaciente();
 	void cargarConsulta();
 	void cargarMedicos();

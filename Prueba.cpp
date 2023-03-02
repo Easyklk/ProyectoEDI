@@ -25,12 +25,13 @@ int main() {
 	Medico *m2 = new Medico("Medico2", "apellidos2", "especialidad2");
 	Consulta a(p1, m1, Pendiente, FechaYHora(22, 2, 2023, 10, 30));
 	Consulta b(p2, m2, Externa, FechaYHora(21, 2, 2023, 10, 30));
+
 	Hospital h("Hospital Santa Justa");
 
-	Paciente p3;
+	Paciente *p3 = new Paciente();
 
-	p3 = h.buscarP("Romanillos Deza");
-	p3.mostrar();
+	p3 = h.buscarPaciente("07464970V");
+	p3->mostrar();
 
 //	h.mostrarPaciente();
 

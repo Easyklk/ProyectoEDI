@@ -21,8 +21,6 @@ private:
 	Medico *m;
 	FechaYHora hora;
 	TipoConsulta tipo;
-	bool alta;
-	string informe;
 
 public:
 	Consulta();
@@ -32,8 +30,6 @@ public:
 			const FechaYHora &f);
 	void asignarMedico(Medico *m);
 	void agendarFecha(FechaYHora f);
-	void darDeAlta();
-	void adjuntarInforme();
 	void mostrar();
 	FechaYHora getHora();
 	bool operator <(const Consulta &consulta);

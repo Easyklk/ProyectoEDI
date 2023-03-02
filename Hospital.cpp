@@ -22,7 +22,8 @@ Hospital::Hospital() {
 	this->VOV_Consultas = new GenericVov<Consulta>();
 	this->VOV_Medicos = new GenericVov<Medico>();
 	this->cargarPaciente();
-
+	this->cargarMedicos();
+	this->cargarConsulta();
 }
 
 Hospital::Hospital(string nombre) {
@@ -31,7 +32,8 @@ Hospital::Hospital(string nombre) {
 	this->VOV_Consultas = new GenericVov<Consulta>();
 	this->VOV_Medicos = new GenericVov<Medico>();
 	this->cargarPaciente();
-
+	this->cargarMedicos();
+	this->cargarConsulta();
 }
 
 void Hospital::mostrarPaciente() {
@@ -41,20 +43,25 @@ void Hospital::mostrarPaciente() {
 }
 
 void Hospital::mostrarConsulta() {
+	for (int i = 0; i < this->VOV_Consultas->getCurrentElements(); ++i) {
+		VOV_Consultas->consultarElemento(i).mostrar();
+	}
 }
 
 void Hospital::mostrarMedico() {
+	for (int i = 0; i < this->VOV_Medicos->getCurrentElements(); ++i) {
+		VOV_Medicos->consultarElemento(i).mostrar();
+	}
 }
 
-Paciente Hospital::buscarP(string apellidos) {
-	Paciente p;
+Paciente* Hospital::buscarPaciente(string dni) {
+	Paciente *p = nullptr;
 	bool encontrado;
 	int i = 0;
 	while (i < this->VOV_Pacientes->getCurrentElements() && !encontrado) {
-		if (this->VOV_Pacientes->consultarElemento(i).getApellidos()
-				== apellidos) {
+		if (this->VOV_Pacientes->consultarElemento(i).getDNI() == dni) {
 			encontrado = true;
-			p = this->VOV_Pacientes->consultarElemento(i);
+			p = new Paciente(this->VOV_Pacientes->consultarElemento(i));
 		} else {
 			i++;
 		}
@@ -62,7 +69,7 @@ Paciente Hospital::buscarP(string apellidos) {
 	return p;
 }
 
-Medico* Hospital::buscarM(string apellidos) {
+Medico* Hospital::buscarMedico(string apellidos) {
 	Medico *m = nullptr;
 	bool encontrado;
 	int i = 0;
@@ -82,7 +89,7 @@ void Hospital::cargarPaciente() {
 	ifstream ifs;
 	string nombre, apellidos, DNI, edadString, generoString;
 	int genero, edad;
-	Paciente p;
+	Paciente *p = nullptr;
 	ifs.open("pacientes.csv");
 	if (ifs.fail()) {
 		cerr << "ERROR: fichero no encontrado." << endl;
@@ -97,8 +104,8 @@ void Hospital::cargarPaciente() {
 				edad = stoi(edadString);
 				genero = stoi(generoString);
 				Genero generoGen = Genero(genero);
-				p = Paciente(nombre, apellidos, DNI, generoGen, edad);
-				this->VOV_Pacientes->insertarElemento(p);
+				p = new Paciente(nombre, apellidos, DNI, generoGen, edad);
+				this->VOV_Pacientes->insertarElemento(*p);
 			}
 		}
 		ifs.close();
@@ -106,36 +113,57 @@ void Hospital::cargarPaciente() {
 }
 
 void Hospital::cargarConsulta() {
-//	ifstream ifs;
-//	string DNI;
-//	int genero, edad;
-//	Paciente p;
-//	Medico m;
-//	FechaYHora fyh;
-//
-//	ifs.open("pacientes.csv");
-//	if (ifs.fail()) {
-//		cerr << "ERROR: fichero no encontrado." << endl;
-//	} else {
-//		while (!ifs.eof()) {
-//			getline(ifs, DNI, ';');
-//			if (!ifs.eof()) {
-//				getline(ifs, nombre, ';');
-//				getline(ifs, apellidos, ';');
-//				getline(ifs, generoString, ';');
-//				getline(ifs, edadString, '\n');
-//				edad = stoi(edadString);
-//				genero = stoi(generoString);
-//				Genero generoGen = Genero(genero);
-//				p = Paciente(nombre, apellidos, DNI, generoGen, edad);
-//				this->VOV_Pacientes->insertarElemento(p);
-//			}
-//		}
-//		ifs.close();
-//	}
+	ifstream ifs;
+	Paciente *p = nullptr;
+	Medico *m = nullptr;
+	Consulta *c = nullptr;
+	FechaYHora fyh;
+	string DNI, apellidos, fecha, tipoString;
+	int tipoInt = 0;
+	ifs.open("consultas.csv");
+	if (ifs.fail()) {
+		cerr << "ERROR: fichero no encontrado." << endl;
+	} else {
+		while (!ifs.eof()) {
+			getline(ifs, DNI, ';');
+			if (!ifs.eof()) {
+				getline(ifs, apellidos, ';');
+				getline(ifs, tipoString, ';');
+				cout << tipoString << endl;
+				getline(ifs, fecha, '\n');
+//				tipoInt = stoi(tipoString);
+				TipoConsulta tipo = TipoConsulta(tipoInt);
+				p = buscarPaciente(DNI);
+				m = buscarMedico(apellidos);
+				fyh = FechaYHora(fecha);
+
+				c = new Consulta(p, m, tipo, fecha);
+				this->VOV_Consultas->insertarElemento(*c);
+			}
+		}
+		ifs.close();
+	}
 }
 
 void Hospital::cargarMedicos() {
+	ifstream ifs;
+	string nombre, apellidos, especialidad;
+	Medico *m = nullptr;
+	ifs.open("medicos.csv");
+	if (ifs.fail()) {
+		cerr << "ERROR: fichero no encontrado." << endl;
+	} else {
+		while (!ifs.eof()) {
+			getline(ifs, nombre, ';');
+			if (!ifs.eof()) {
+				getline(ifs, apellidos, ';');
+				getline(ifs, especialidad, '\n');
+				m = new Medico(nombre, apellidos, especialidad);
+				this->VOV_Medicos->insertarElemento(*m);
+			}
+		}
+		ifs.close();
+	}
 }
 
 Hospital::~Hospital() {
