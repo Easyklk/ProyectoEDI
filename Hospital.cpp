@@ -36,19 +36,19 @@ Hospital::Hospital(string nombre) {
 	this->cargarConsulta();
 }
 
-void Hospital::mostrarPaciente() {
+void Hospital::mostrarPacientes() {
 	for (int i = 0; i < this->VOV_Pacientes->getCurrentElements(); ++i) {
 		VOV_Pacientes->consultarElemento(i).mostrar();
 	}
 }
 
-void Hospital::mostrarConsulta() {
+void Hospital::mostrarConsultas() {
 	for (int i = 0; i < this->VOV_Consultas->getCurrentElements(); ++i) {
 		VOV_Consultas->consultarElemento(i).mostrar();
 	}
 }
 
-void Hospital::mostrarMedico() {
+void Hospital::mostrarMedicos() {
 	for (int i = 0; i < this->VOV_Medicos->getCurrentElements(); ++i) {
 		VOV_Medicos->consultarElemento(i).mostrar();
 	}
@@ -56,7 +56,7 @@ void Hospital::mostrarMedico() {
 
 Paciente* Hospital::buscarPaciente(string dni) {
 	Paciente *p = nullptr;
-	bool encontrado;
+	bool encontrado = false;
 	int i = 0;
 	while (i < this->VOV_Pacientes->getCurrentElements() && !encontrado) {
 		if (this->VOV_Pacientes->consultarElemento(i).getDNI() == dni) {
@@ -71,7 +71,8 @@ Paciente* Hospital::buscarPaciente(string dni) {
 
 Medico* Hospital::buscarMedico(string apellidos) {
 	Medico *m = nullptr;
-	bool encontrado;
+	bool encontrado = false;
+	;
 	int i = 0;
 	while (i < this->VOV_Medicos->getCurrentElements() && !encontrado) {
 		if (this->VOV_Medicos->consultarElemento(i).getApellidos()
@@ -83,6 +84,22 @@ Medico* Hospital::buscarMedico(string apellidos) {
 		}
 	}
 	return m;
+}
+
+Consulta* Hospital::buscarConsulta(string DNI) {
+	Consulta *c = nullptr;
+	bool encontrado = false;
+	int i = 0;
+	while (i < this->VOV_Consultas->getCurrentElements() && !encontrado) {
+		if (this->VOV_Consultas->consultarElemento(i).getPaciente()->getDNI()
+				== DNI) {
+			encontrado = true;
+			c = new Consulta(this->VOV_Consultas->consultarElemento(i));
+		} else {
+			i++;
+		}
+	}
+	return c;
 }
 
 void Hospital::cargarPaciente() {
@@ -118,8 +135,8 @@ void Hospital::cargarConsulta() {
 	Medico *m = nullptr;
 	Consulta *c = nullptr;
 	FechaYHora fyh;
-	string DNI, apellidos, fecha, tipoString;
-	int tipoInt = 0;
+	string DNI, apellidos, fecha, tipoConsultaString;
+	int tipoInt;
 	ifs.open("consultas.csv");
 	if (ifs.fail()) {
 		cerr << "ERROR: fichero no encontrado." << endl;
@@ -128,16 +145,18 @@ void Hospital::cargarConsulta() {
 			getline(ifs, DNI, ';');
 			if (!ifs.eof()) {
 				getline(ifs, apellidos, ';');
-				getline(ifs, tipoString, ';');
-				cout << tipoString << endl;
+				getline(ifs, tipoConsultaString, ';');
 				getline(ifs, fecha, '\n');
-//				tipoInt = stoi(tipoString);
-				TipoConsulta tipo = TipoConsulta(tipoInt);
+				tipoInt = stoi(tipoConsultaString);
+				TipoConsulta tipoConsultaEnum = TipoConsulta(tipoInt);
 				p = buscarPaciente(DNI);
 				m = buscarMedico(apellidos);
-				fyh = FechaYHora(fecha);
-
-				c = new Consulta(p, m, tipo, fecha);
+				if (fecha == "-") {
+					fyh = FechaYHora();
+				} else {
+					fyh = FechaYHora(fecha);
+				}
+				c = new Consulta(p, m, tipoConsultaEnum, fyh);
 				this->VOV_Consultas->insertarElemento(*c);
 			}
 		}
@@ -164,6 +183,49 @@ void Hospital::cargarMedicos() {
 		}
 		ifs.close();
 	}
+}
+
+void Hospital::almacenarPaciente(Paciente *p) {
+	ifstream ifs;
+	ofstream ofs;
+	string line, pacienteString, consultaString, nombre = p->getNombre(),
+			apellidos = p->getApellidos(), DNI = p->getDNI(), generoString;
+	Consulta *c = buscarConsulta(DNI);
+//	FechaYHora fyh = c->getHora();
+	Medico *m = c->getMedico();
+	int edad = p->getEdad(), generoInt = p->getGenero();
+	if (generoInt == 0) {
+		generoString = "Masculino";
+	} else if (generoInt == 1) {
+		generoString = "Femenino";
+	} else {
+		generoString = "Indefinido";
+	}
+
+	pacienteString = "Nombre: " + nombre + ", Apellidos: " + apellidos
+			+ ", DNI: " + DNI + ", Genero: " + generoString + ", Edad: "
+			+ std::to_string(edad) + "\n";
+
+	consultaString = "Doctor/a: " + m->getNombre() + " " + m->getApellidos()
+			+ " Especialidad: " + m->getEspecialidad() + " Fecha y hora: ";
+
+	ifs.open(DNI + ".txt");
+	if (ifs.fail()) {
+		ofs.open(DNI + ".txt", ios::trunc);
+	}
+	if (!ofs.fail()) {
+//		while (!ifs.eof()) {
+
+		getline(ifs, pacienteString);
+		ofs << line;
+		if (!ifs.eof()) {
+			ofs << endl;
+		}
+	}
+
+//	}
+	ifs.close();
+	ofs.close();
 }
 
 Hospital::~Hospital() {

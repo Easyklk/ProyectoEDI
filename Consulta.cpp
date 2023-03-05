@@ -14,19 +14,19 @@ Consulta::Consulta() {
 	// TODO Auto-generated constructor stub
 	p = nullptr;
 	m = nullptr;
-	tipo = Vacio;
+	tipo = Pendiente;
 }
 
 Consulta::Consulta(Paciente *p) {
 	this->p = p;
 	m = nullptr;
-	tipo = Vacio;
+	tipo = Pendiente;
 }
 
 Consulta::Consulta(Paciente *p, Medico *m) {
 	this->p = p;
 	this->m = m;
-	tipo = Vacio;
+	tipo = Pendiente;
 }
 
 Consulta::Consulta(Paciente *p, Medico *m, const TipoConsulta &tc,
@@ -46,10 +46,7 @@ void Consulta::agendarFecha(FechaYHora f) {
 
 void Consulta::mostrar() {
 	string tipo;
-
-	if (this->tipo == Vacio) {
-		tipo = "Vacio";
-	} else if (this->tipo == Pendiente) {
+	if (this->tipo == Pendiente) {
 		tipo = "Pendiente";
 	} else if (this->tipo == Urgente) {
 		tipo = "Urgente";
@@ -60,9 +57,18 @@ void Consulta::mostrar() {
 	cout << "Consulta{ ";
 	p->mostrar();
 	m->mostrar();
+	cout << "Tipo: " << tipo << ", ";
 	hora.mostrar();
-	cout << " }" << endl;
+	cout << " }" << endl << endl;
 
+}
+
+Paciente* Consulta::getPaciente() {
+	return this->p;
+}
+
+Medico* Consulta::getMedico() {
+	return this->m;
 }
 
 FechaYHora Consulta::getHora() {
@@ -84,3 +90,4 @@ bool Consulta::operator >(const Consulta &consulta) {
 Consulta::~Consulta() {
 	// TODO Auto-generated destructor stub
 }
+

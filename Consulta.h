@@ -13,7 +13,7 @@
 #include "fechayhora.h"
 
 enum TipoConsulta {
-	Vacio, Pendiente, Urgente, Externa
+	Pendiente, Urgente, Externa
 };
 class Consulta {
 private:
@@ -31,6 +31,8 @@ public:
 	void asignarMedico(Medico *m);
 	void agendarFecha(FechaYHora f);
 	void mostrar();
+	Paciente* getPaciente();
+	Medico* getMedico();
 	FechaYHora getHora();
 	bool operator <(const Consulta &consulta);
 	bool operator ==(const Consulta &consulta);

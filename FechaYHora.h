@@ -22,67 +22,66 @@
 
 using namespace std;
 
-
 class FechaYHora {
 
 private:
-   
-   int dia;
-   int mes;
-   int anio;
-   int hora;
-   int minutos;
+
+	int dia;
+	int mes;
+	int anio;
+	int hora;
+	int minutos;
 
 public:
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Constructor por defecto.
-          FechaYHora    ();
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Constructor por defecto.
+	FechaYHora();
 
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Constructor parametrizado (hora completa).
-          FechaYHora    (int dia, int mes, int anio, int hora, int minutos);
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Constructor parametrizado (hora completa).
+	FechaYHora(int dia, int mes, int anio, int hora, int minutos);
 
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Constructor parametrizado.
-   //       Hora completa a partir de formato cadena: "02/04/2023 9:45"
-   //       No comprueba errores en la fecha ni en el formato.
-          FechaYHora    (const string &fh);
-   
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Destructor.
-         ~FechaYHora    ();
-   
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Establece una fecha y hora completa. No comprueba errores.
-   void   setFechaYHora (int dia, int mes, int anio, int hora, int minutos);
-   
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: TRUE si la fecha/hora actual (this) es estrictamente menor que fh,
-   //        FALSE en otro caso
-   bool operator < (const FechaYHora &fh);
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Constructor parametrizado.
+	//       Hora completa a partir de formato cadena: "02/04/2023 9:45"
+	//       No comprueba errores en la fecha ni en el formato.
+	FechaYHora(const string &fh);
 
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: TRUE si la fecha/hora actual (this) es estrictamente mayor que fh,
-   //       FALSE en otro caso
-   bool operator > (const FechaYHora &fh);
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Destructor.
+	~FechaYHora();
 
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: TRUE si la fecha/hora actual (this) es igual que fh,
-   //       FALSE en otro caso
-   bool operator == (const FechaYHora &fh);
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Establece una fecha y hora completa. No comprueba errores.
+	void setFechaYHora(int dia, int mes, int anio, int hora, int minutos);
 
-   // Pre   = { }
-   // Compl = O(1)
-   // Desc: Muestra la fecha/hora en pantalla
-   void   mostrar       () const;
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: TRUE si la fecha/hora actual (this) es estrictamente menor que fh,
+	//        FALSE en otro caso
+	bool operator <(const FechaYHora &fh);
+
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: TRUE si la fecha/hora actual (this) es estrictamente mayor que fh,
+	//       FALSE en otro caso
+	bool operator >(const FechaYHora &fh);
+
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: TRUE si la fecha/hora actual (this) es igual que fh,
+	//       FALSE en otro caso
+	bool operator ==(const FechaYHora &fh);
+
+	// Pre   = { }
+	// Compl = O(1)
+	// Desc: Muestra la fecha/hora en pantalla
+	void mostrar() const;
 
 };
 

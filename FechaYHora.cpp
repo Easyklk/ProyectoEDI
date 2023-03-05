@@ -180,5 +180,5 @@ bool FechaYHora::operator == (const FechaYHora &fh) {
 
 void FechaYHora::mostrar () const {
    cout << this->dia  << "/" << this->mes     << "/" << this->anio << " "
-        << this->hora << ":" << this->minutos << endl;
+        << this->hora << ":" << this->minutos;
 }

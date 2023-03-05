@@ -22,14 +22,16 @@ private:
 public:
 	Hospital();
 	Hospital(string nombre);
-	void mostrarPaciente();
-	void mostrarConsulta();
-	void mostrarMedico();
+	void mostrarPacientes();
+	void mostrarConsultas();
+	void mostrarMedicos();
 	Paciente* buscarPaciente(string apellidos);
 	Medico* buscarMedico(string apellidos);
+	Consulta* buscarConsulta(string DNI);
 	void cargarPaciente();
 	void cargarConsulta();
 	void cargarMedicos();
+	void almacenarPaciente(Paciente *p);
 	~Hospital();
 };
 
