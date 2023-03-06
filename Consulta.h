@@ -28,15 +28,20 @@ public:
 	Consulta(Paciente *p, Medico *m);
 	Consulta(Paciente *p, Medico *m, const TipoConsulta &tc,
 			const FechaYHora &f);
+
 	void asignarMedico(Medico *m);
 	void agendarFecha(FechaYHora f);
 	void mostrar();
+
 	Paciente* getPaciente();
 	Medico* getMedico();
 	FechaYHora getHora();
+
 	bool operator <(const Consulta &consulta);
 	bool operator ==(const Consulta &consulta);
 	bool operator >(const Consulta &consulta);
+
+	string toString();
 	~Consulta();
 };
 

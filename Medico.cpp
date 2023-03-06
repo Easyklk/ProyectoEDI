@@ -66,3 +66,8 @@ bool Medico::operator >(const Medico &medico) {
 
 Medico::~Medico() {
 }
+
+string Medico::toString() {
+	return ("Medico{ Nombre: " + nombre + ", Apellidos: " + apellidos
+			+ ", Especialidad: " + especialidad + "}");
+}

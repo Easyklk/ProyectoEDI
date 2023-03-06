@@ -87,6 +87,12 @@ bool Consulta::operator ==(const Consulta &consulta) {
 bool Consulta::operator >(const Consulta &consulta) {
 	return (this->hora > consulta.hora);
 }
+
+string Consulta::toString() {
+	string a = p->toString();
+	return ("Consulta{ " + this->p->toString()+", "+this->m->toString()+" }");
+}
+;
 Consulta::~Consulta() {
 	// TODO Auto-generated destructor stub
 }

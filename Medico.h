@@ -34,6 +34,7 @@ public:
 	bool operator >(const Medico &medico);
 
 	void mostrar();
+	string toString();
 };
 
 #endif /* MEDICO_H_ */

@@ -72,9 +72,6 @@ int Paciente::getEdad() {
 	return this->edad;
 }
 
-Paciente::~Paciente() {
-}
-
 bool Paciente::operator <(const Paciente &paciente) {
 	return (this->apellidos < paciente.apellidos);
 }
@@ -91,5 +88,22 @@ void Paciente::mostrar() {
 	cout << "Paciente{ Nombre: " << nombre << ", Apellidos: " << apellidos
 			<< ", DNI: " << DNI << ", Genero: " << genero << "}" << endl;
 
+}
+
+string Paciente::toString() {
+	string generoString = "";
+	if (this->genero == 0) {
+		generoString = "Masculino";
+	} else if (this->genero == 1) {
+		generoString = "Femenino";
+	} else {
+		generoString = "Indefinido";
+	}
+	return ("Paciente{ Nombre: " + this->nombre + ", Apellidos: "
+			+ this->apellidos + ", DNI: " + to_string(edad) + ", Genero: "
+			+ generoString) + "}";
+}
+
+Paciente::~Paciente() {
 }
 

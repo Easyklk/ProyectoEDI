@@ -83,6 +83,8 @@ public:
 	// Desc: Muestra la fecha/hora en pantalla
 	void mostrar() const;
 
+	string toString();
+
 };
 
 #endif /* _FECHAYHORA_H_ */

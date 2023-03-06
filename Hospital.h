@@ -16,9 +16,9 @@
 class Hospital {
 private:
 	string nombre;
-	GenericVov<Paciente> *VOV_Pacientes;
-	GenericVov<Consulta> *VOV_Consultas;
-	GenericVov<Medico> *VOV_Medicos;
+	GenericVov<Paciente*> *VOV_Pacientes;
+	GenericVov<Consulta*> *VOV_Consultas;
+	GenericVov<Medico*> *VOV_Medicos;
 public:
 	Hospital();
 	Hospital(string nombre);

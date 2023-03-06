@@ -47,6 +47,8 @@ public:
 	bool operator >(const Paciente &paciente);
 
 	void mostrar();
+
+	string toString();
 };
 
 #endif /* PACIENTE_H_ */

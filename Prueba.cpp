@@ -28,7 +28,7 @@ int main() {
 
 	Hospital *h = new Hospital("Hospital Santa Justa");
 
-	Paciente *p3 = h->buscarPaciente("07464970V");
+	Paciente *p3 = h->buscarPaciente("05885679I");
 
 	h->almacenarPaciente(p3);
 
