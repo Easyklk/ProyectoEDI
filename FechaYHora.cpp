@@ -165,6 +165,6 @@ void FechaYHora::mostrar() const {
 }
 
 string FechaYHora::toString() {
-	return (to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio)
-			+ " | " + to_string(hora) + ":" + to_string(minutos));
+	return (to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio) + " "
+			+ to_string(hora) + ":" + to_string(minutos));
 }

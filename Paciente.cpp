@@ -101,7 +101,7 @@ string Paciente::toString() {
 	}
 	return ("Paciente{ Nombre: " + this->nombre + ", Apellidos: "
 			+ this->apellidos + ", DNI: " + to_string(edad) + ", Genero: "
-			+ generoString) + "}";
+			+ generoString) + " }";
 }
 
 Paciente::~Paciente() {

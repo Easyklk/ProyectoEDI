@@ -69,5 +69,5 @@ Medico::~Medico() {
 
 string Medico::toString() {
 	return ("Medico{ Nombre: " + nombre + ", Apellidos: " + apellidos
-			+ ", Especialidad: " + especialidad + "}");
+			+ ", Especialidad: " + especialidad + " }");
 }

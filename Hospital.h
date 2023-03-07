@@ -22,17 +22,24 @@ private:
 public:
 	Hospital();
 	Hospital(string nombre);
+	string getNombre();
+
 	void mostrarPacientes();
 	void mostrarConsultas();
 	void mostrarMedicos();
+	void mostrarEstadisticas();
+
 	Paciente* buscarPaciente(string apellidos);
 	Medico* buscarMedico(string apellidos);
 	Consulta* buscarConsulta(string DNI);
+
 	void cargarPaciente();
 	void cargarConsulta();
 	void cargarMedicos();
 	void almacenarPaciente(Paciente *p);
+
 	~Hospital();
+
 };
 
 #endif /* HOSPITAL_H_ */

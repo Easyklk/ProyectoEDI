@@ -90,7 +90,8 @@ bool Consulta::operator >(const Consulta &consulta) {
 
 string Consulta::toString() {
 	string a = p->toString();
-	return ("Consulta{ " + this->p->toString()+", "+this->m->toString()+" }");
+	return ("Consulta{ " + this->m->toString() + " Fecha y hora: "
+			+ this->hora.toString() + " }");
 }
 ;
 Consulta::~Consulta() {

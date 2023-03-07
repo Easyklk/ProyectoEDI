@@ -15,6 +15,7 @@
 enum TipoConsulta {
 	Pendiente, Urgente, Externa
 };
+
 class Consulta {
 private:
 	Paciente *p;

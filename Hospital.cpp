@@ -36,6 +36,9 @@ Hospital::Hospital(string nombre) {
 	this->cargarConsulta();
 }
 
+string Hospital::getNombre() {
+	return this->nombre;
+}
 void Hospital::mostrarPacientes() {
 	for (int i = 0; i < this->VOV_Pacientes->getCurrentElements(); ++i) {
 		VOV_Pacientes->consultarElemento(i)->mostrar();
@@ -52,6 +55,12 @@ void Hospital::mostrarMedicos() {
 	for (int i = 0; i < this->VOV_Medicos->getCurrentElements(); ++i) {
 		VOV_Medicos->consultarElemento(i)->mostrar();
 	}
+}
+
+void Hospital::mostrarEstadisticas() {
+	cout << "Nº de Pacientes: " << this->VOV_Pacientes->getCurrentElements()
+			<< " Nº de Medicos: " << this->VOV_Medicos->getCurrentElements()
+			<< " Nº de Consultas: " << this->VOV_Consultas->getCurrentElements();
 }
 
 Paciente* Hospital::buscarPaciente(string dni) {
@@ -195,7 +204,6 @@ void Hospital::almacenarPaciente(Paciente *p) {
 			if (this->VOV_Consultas->consultarElemento(i)->getPaciente()->getDNI()
 					== DNI) {
 				ofs << this->VOV_Consultas->consultarElemento(i)->toString();
-
 			}
 		}
 
@@ -208,3 +216,4 @@ Hospital::~Hospital() {
 	delete this->VOV_Consultas;
 	delete this->VOV_Medicos;
 }
+
