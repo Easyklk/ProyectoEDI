@@ -33,8 +33,24 @@ Consulta::Consulta(Paciente *p, Medico *m, const TipoConsulta &tc,
 		const FechaYHora &f) {
 	this->p = p;
 	this->m = m;
-	hora = f;
 	tipo = tc;
+	hora = f;
+}
+
+Paciente* Consulta::getPaciente() {
+	return this->p;
+}
+
+Medico* Consulta::getMedico() {
+	return this->m;
+}
+
+FechaYHora Consulta::getHora() {
+	return this->hora;
+}
+
+TipoConsulta Consulta::getTipo() {
+	return this->tipo;
 }
 
 void Consulta::asignarMedico(Medico *m) {
@@ -61,18 +77,6 @@ void Consulta::mostrar() {
 	hora.mostrar();
 	cout << " }" << endl << endl;
 
-}
-
-Paciente* Consulta::getPaciente() {
-	return this->p;
-}
-
-Medico* Consulta::getMedico() {
-	return this->m;
-}
-
-FechaYHora Consulta::getHora() {
-	return this->hora;
 }
 
 bool Consulta::operator <(const Consulta &consulta) {

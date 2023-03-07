@@ -39,6 +39,7 @@ Hospital::Hospital(string nombre) {
 string Hospital::getNombre() {
 	return this->nombre;
 }
+
 void Hospital::mostrarPacientes() {
 	for (int i = 0; i < this->VOV_Pacientes->getCurrentElements(); ++i) {
 		VOV_Pacientes->consultarElemento(i)->mostrar();

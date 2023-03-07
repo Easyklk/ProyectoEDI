@@ -12,14 +12,6 @@
 #include "FechaYHora.h"
 using namespace std;
 
-FechaYHora::FechaYHora(int dia, int mes, int anio, int hora, int minutos) {
-	this->dia = dia;
-	this->mes = mes;
-	this->anio = anio;
-	this->hora = hora;
-	this->minutos = minutos;
-}
-
 FechaYHora::FechaYHora() {
 	this->dia = 0;
 	this->mes = 0;
@@ -28,8 +20,15 @@ FechaYHora::FechaYHora() {
 	this->minutos = 0;
 }
 
-FechaYHora::FechaYHora(const string &fh) {
+FechaYHora::FechaYHora(int dia, int mes, int anio, int hora, int minutos) {
+	this->dia = dia;
+	this->mes = mes;
+	this->anio = anio;
+	this->hora = hora;
+	this->minutos = minutos;
+}
 
+FechaYHora::FechaYHora(const string &fh) {
 	size_t pos = 0;
 	string token;
 	string copia = fh;
@@ -67,9 +66,6 @@ FechaYHora::FechaYHora(const string &fh) {
 	this->minutos = stoi(minutos);
 }
 
-FechaYHora::~FechaYHora() {
-}
-
 void FechaYHora::setFechaYHora(int dia, int mes, int anio, int hora,
 		int minutos) {
 	this->dia = dia;
@@ -80,82 +76,56 @@ void FechaYHora::setFechaYHora(int dia, int mes, int anio, int hora,
 }
 
 bool FechaYHora::operator <(const FechaYHora &fh) {
-
 	bool menor = false;
-
 	if (this->anio < fh.anio) {
-
 		menor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes < fh.mes)) {
 
 		menor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia < fh.dia)) {
-
 		menor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia == fh.dia) && (this->hora < fh.hora)) {
-
 		menor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia == fh.dia) && (this->hora == fh.hora)
 			&& (this->minutos < fh.minutos)) {
 
 		menor = true;
-
 	}
 
 	return menor;
 }
 
 bool FechaYHora::operator >(const FechaYHora &fh) {
-
 	bool mayor = false;
-
 	if (this->anio > fh.anio) {
-
 		mayor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes > fh.mes)) {
-
 		mayor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia > fh.dia)) {
-
 		mayor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia == fh.dia) && (this->hora > fh.hora)) {
-
 		mayor = true;
-
 	} else if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia == fh.dia) && (this->hora == fh.hora)
 			&& (this->minutos > fh.minutos)) {
-
 		mayor = true;
-
 	}
 
 	return mayor;
 }
 
 bool FechaYHora::operator ==(const FechaYHora &fh) {
-
 	bool igual = false;
-
 	if ((this->anio == fh.anio) && (this->mes == fh.mes)
 			&& (this->dia == fh.dia) && (this->hora == fh.hora)
 			&& (this->minutos == fh.minutos)) {
-
 		igual = true;
 	}
-
 	return igual;
 }
 
@@ -167,4 +137,7 @@ void FechaYHora::mostrar() const {
 string FechaYHora::toString() {
 	return (to_string(dia) + "/" + to_string(mes) + "/" + to_string(anio) + " "
 			+ to_string(hora) + ":" + to_string(minutos));
+}
+
+FechaYHora::~FechaYHora() {
 }

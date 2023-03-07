@@ -6,14 +6,17 @@
  */
 #include "PruebasPaciente.h"
 #include "PruebasMedico.h"
-#
+#include "PruebasConsulta.h"
+#include "PruebasFechaYHora.h"
 
 #include <iostream>
 
 using namespace std;
 
 int main() {
-//	pruebasPaciente();
-//	pruebasMedico();
+	pruebasPaciente();
+	pruebasMedico();
+	pruebasConsulta();
+	pruebasFechaYHora();
 	return 0;
 }
