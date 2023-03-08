@@ -32,11 +32,11 @@ public:
 	void mostrarMedicos();
 	void mostrarEstadisticas();
 
-	Paciente* buscarPaciente(string apellidos);
+	Paciente* buscarPaciente(string DNI);
 	Medico* buscarMedico(string apellidos);
 	Consulta* buscarConsulta(string DNI);
 
-	void almacenarPaciente(Paciente *p);
+	void almacenarPaciente(string DNI);
 
 	~Hospital();
 

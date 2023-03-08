@@ -61,7 +61,8 @@ void Hospital::mostrarMedicos() {
 void Hospital::mostrarEstadisticas() {
 	cout << "Nº de Pacientes: " << this->VOV_Pacientes->getCurrentElements()
 			<< " Nº de Medicos: " << this->VOV_Medicos->getCurrentElements()
-			<< " Nº de Consultas: " << this->VOV_Consultas->getCurrentElements();
+			<< " Nº de Consultas: "
+			<< this->VOV_Consultas->getCurrentElements();
 }
 
 Paciente* Hospital::buscarPaciente(string dni) {
@@ -195,10 +196,8 @@ void Hospital::cargarMedicos() {
 	}
 }
 
-void Hospital::almacenarPaciente(Paciente *p) {
+void Hospital::almacenarPaciente(string DNI) {
 	ofstream ofs;
-	string line, pacienteString, consultaString, nombre = p->getNombre(),
-			apellidos = p->getApellidos(), DNI = p->getDNI(), generoString;
 	ofs.open(DNI + ".txt", ios::trunc);
 	if (!ofs.fail()) {
 		for (int i = 0; i < this->VOV_Consultas->getCurrentElements(); ++i) {

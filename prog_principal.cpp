@@ -39,9 +39,8 @@ int menu(string nombre) {
 }
 
 int main() {
-	string aux;
+	string respuesta;
 	Hospital *hospital = nullptr;
-	Paciente *p = nullptr;
 	bool fin = false;
 	int opcion;
 	hospital = new Hospital("Hospital Uex");
@@ -67,21 +66,20 @@ int main() {
 
 		case 5:
 			cout << "Introduzca el DNI a consultar: ";
-			cin >> aux;
-			hospital->buscarPaciente(aux)->mostrar();
+			cin >> respuesta;
+			hospital->buscarPaciente(respuesta)->mostrar();
 			break;
 
 		case 6:
 			cout << "Introduzca el apellido a consultar: ";
-			cin >> aux;
-			hospital->buscarMedico(aux)->mostrar();
+			cin >> respuesta;
+			hospital->buscarMedico(respuesta)->mostrar();
 			break;
 
 		case 7:
 			cout << "Introduzca el DNI a almacenar: ";
-			cin >> aux;
-			p = hospital->buscarPaciente(aux);
-			hospital->almacenarPaciente(p);
+			cin >> respuesta;
+			hospital->almacenarPaciente(respuesta);
 			break;
 
 		case 0:
