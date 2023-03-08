@@ -85,9 +85,17 @@ bool Paciente::operator >(const Paciente &paciente) {
 }
 
 void Paciente::mostrar() {
+	string generoString = "";
+	if (this->genero == 0) {
+		generoString = "Masculino";
+	} else if (this->genero == 1) {
+		generoString = "Femenino";
+	} else {
+		generoString = "Indefinido";
+	}
 	cout << "Paciente{ Nombre: " << this->nombre << ", Apellidos: "
 			<< this->apellidos << ", DNI: " << this->DNI << ", Genero: "
-			<< this->genero << ", Edad: " << this->edad << " }" << endl;
+			<< generoString << ", Edad: " << this->edad << " }" << endl;
 
 }
 

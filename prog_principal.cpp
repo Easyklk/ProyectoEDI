@@ -12,6 +12,13 @@
 #include "medico.h"
 #include "consulta.h"
 #include "hospital.h"
+#include "PruebasPaciente.h"
+#include "PruebasMedico.h"
+#include "PruebasConsulta.h"
+#include "PruebasFechaYHora.h"
+#include "PruebasHospital.h"
+#include "PruebasGenericVov.h"
+
 using namespace std;
 
 int menu(string nombre) {
@@ -39,8 +46,19 @@ int menu(string nombre) {
 }
 
 int main() {
+//	-------Pruebas-------
+//	pruebasPaciente();
+//	pruebasMedico();
+//	pruebasConsulta();
+//	pruebasFechaYHora();
+//	pruebasHospital();
+//	pruebasGenericVov();
+//	-------Pruebas-------
+
 	string respuesta;
 	Hospital *hospital = nullptr;
+	Paciente *p = nullptr;
+	Medico *m = nullptr;
 	bool fin = false;
 	int opcion;
 	hospital = new Hospital("Hospital Uex");
@@ -67,19 +85,43 @@ int main() {
 		case 5:
 			cout << "Introduzca el DNI a consultar: ";
 			cin >> respuesta;
-			hospital->buscarPaciente(respuesta)->mostrar();
+			p = hospital->buscarPaciente(respuesta);
+			if (p != nullptr)
+				p->mostrar();
+			else
+				cerr << " No hay ningun paciente asociado a ese DNI " << endl;
+
 			break;
 
 		case 6:
 			cout << "Introduzca el apellido a consultar: ";
+//			Intente usar el getline para apellidos compuestos pero no funcionaba
+//			---------------------------
+//			cin.ignore();
+//			getline(cin, respuesta);
+//			---------------------------
 			cin >> respuesta;
-			hospital->buscarMedico(respuesta)->mostrar();
+			m = hospital->buscarMedico(respuesta);
+			if (m != nullptr)
+				m->mostrar();
+			else
+				cerr << " No hay ningun medico con ese Apellido" << endl;
+
 			break;
 
 		case 7:
 			cout << "Introduzca el DNI a almacenar: ";
 			cin >> respuesta;
-			hospital->almacenarPaciente(respuesta);
+			if (hospital->buscarPaciente(respuesta) != nullptr) {
+				if (hospital->buscarConsulta(respuesta) != nullptr) {
+					hospital->almacenarPaciente(respuesta);
+				} else {
+					cerr << "El paciente no tiene ninguna consulta asociada"
+							<< endl;
+				}
+			} else
+				cerr << "No hay ningun paciente asociado a ese DNI " << endl;
+
 			break;
 
 		case 0:
@@ -88,11 +130,12 @@ int main() {
 
 		default:
 			break;
-
 		}
 
 	} while (!fin);
 
+	delete p;
+	delete m;
 	delete hospital;
 
 	return 0;

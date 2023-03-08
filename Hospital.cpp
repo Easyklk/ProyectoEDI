@@ -116,7 +116,7 @@ Consulta* Hospital::buscarConsulta(string DNI) {
 void Hospital::cargarPaciente() {
 	ifstream ifs;
 	string nombre, apellidos, DNI, edadString, generoString;
-	int genero, edad;
+//	int genero, edad;
 	Paciente *p = nullptr;
 	ifs.open("pacientes.csv");
 	if (ifs.fail()) {
@@ -129,10 +129,11 @@ void Hospital::cargarPaciente() {
 				getline(ifs, apellidos, ';');
 				getline(ifs, generoString, ';');
 				getline(ifs, edadString, '\n');
-				edad = stoi(edadString);
-				genero = stoi(generoString);
-				Genero generoGen = Genero(genero);
-				p = new Paciente(nombre, apellidos, DNI, generoGen, edad);
+//				edad = stoi(edadString);
+//				genero = stoi(generoString);
+				Genero generoGen = Genero(stoi(generoString));
+				p = new Paciente(nombre, apellidos, DNI, generoGen,
+						stoi(edadString));
 				this->VOV_Pacientes->insertarElemento(p);
 			}
 		}
@@ -206,7 +207,6 @@ void Hospital::almacenarPaciente(string DNI) {
 				ofs << this->VOV_Consultas->consultarElemento(i)->toString();
 			}
 		}
-
 	}
 	ofs.close();
 }

@@ -97,7 +97,7 @@ string Consulta::toString() {
 	return ("Consulta{ " + this->m->toString() + " Fecha y hora: "
 			+ this->hora.toString() + " } \n");
 }
-;
+
 Consulta::~Consulta() {
 	// TODO Auto-generated destructor stub
 }

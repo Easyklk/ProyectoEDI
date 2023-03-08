@@ -8,15 +8,17 @@
 #include "PruebasMedico.h"
 #include "PruebasConsulta.h"
 #include "PruebasFechaYHora.h"
+#include "PruebasHospital.h"
 
 #include <iostream>
 
 using namespace std;
-//
+
 //int main() {
 //	pruebasPaciente();
 //	pruebasMedico();
 //	pruebasConsulta();
 //	pruebasFechaYHora();
+//	pruebasHospital();
 //	return 0;
 //}

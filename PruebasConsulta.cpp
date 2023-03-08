@@ -55,13 +55,13 @@ void probarToStringConsulta() {
 	cout << "Inicio probarToStringConsulta" << endl;
 	Paciente *p1 = new Paciente("Isaac", "Romanillos Deza", "07464970V",
 			Genero(0), 22);
-	Medico *m2 = new Medico("Isaac", "Romanillos Deza", "Ser un matao'");
+	Medico *m2 = new Medico("Isaac", "Romanillos Deza", "Ser un matao");
 	FechaYHora fyh1("23/03/2023 09:09");
 
 	Consulta c1(p1, m2, TipoConsulta(0), fyh1);
 	if (c1.toString()
-			!= "Consulta{ Medico{ Nombre: Isaac, Apellidos: Romanillos Deza, Especialidad: Ser un matao' } Fecha y hora: 23/3/2023 9:9 }")
-		cerr << "Error toString ()" << endl;
+			!= "Consulta{ Medico{ Nombre: Isaac, Apellidos: Romanillos Deza, Especialidad: Ser un matao } Fecha y hora: 23/3/2023 9:9 } ")
+		cerr << "Error toStringConsulta ()" << endl;
 
 	cout << "Fin probarToStringConsulta" << endl;
 }
