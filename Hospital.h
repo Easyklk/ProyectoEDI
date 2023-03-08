@@ -19,6 +19,9 @@ private:
 	GenericVov<Paciente*> *VOV_Pacientes;
 	GenericVov<Consulta*> *VOV_Consultas;
 	GenericVov<Medico*> *VOV_Medicos;
+	void cargarPaciente();
+	void cargarConsulta();
+	void cargarMedicos();
 public:
 	Hospital();
 	Hospital(string nombre);
@@ -33,9 +36,6 @@ public:
 	Medico* buscarMedico(string apellidos);
 	Consulta* buscarConsulta(string DNI);
 
-	void cargarPaciente();
-	void cargarConsulta();
-	void cargarMedicos();
 	void almacenarPaciente(Paciente *p);
 
 	~Hospital();

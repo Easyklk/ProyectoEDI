@@ -12,11 +12,11 @@
 #include <iostream>
 
 using namespace std;
-
-int main() {
-	pruebasPaciente();
-	pruebasMedico();
-	pruebasConsulta();
-	pruebasFechaYHora();
-	return 0;
-}
+//
+//int main() {
+//	pruebasPaciente();
+//	pruebasMedico();
+//	pruebasConsulta();
+//	pruebasFechaYHora();
+//	return 0;
+//}

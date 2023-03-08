@@ -95,7 +95,7 @@ bool Consulta::operator >(const Consulta &consulta) {
 string Consulta::toString() {
 	string a = p->toString();
 	return ("Consulta{ " + this->m->toString() + " Fecha y hora: "
-			+ this->hora.toString() + " }");
+			+ this->hora.toString() + " } \n");
 }
 ;
 Consulta::~Consulta() {
