@@ -85,8 +85,9 @@ bool Paciente::operator >(const Paciente &paciente) {
 }
 
 void Paciente::mostrar() {
-	cout << "Paciente{ Nombre: " << nombre << ", Apellidos: " << apellidos
-			<< ", DNI: " << DNI << ", Genero: " << genero << "}" << endl;
+	cout << "Paciente{ Nombre: " << this->nombre << ", Apellidos: "
+			<< this->apellidos << ", DNI: " << this->DNI << ", Genero: "
+			<< this->genero << ", Edad: " << this->edad << " }" << endl;
 
 }
 
