@@ -115,7 +115,6 @@ Consulta* Hospital::buscarConsulta(string DNI) {
 
 void Hospital::cargarPaciente() {
 	ifstream ifs;
-	string nombre, apellidos, DNI, edadString, generoString;
 //	int genero, edad;
 	Paciente *p = nullptr;
 	ifs.open("pacientes.csv");
@@ -123,17 +122,24 @@ void Hospital::cargarPaciente() {
 		cerr << "ERROR: fichero no encontrado." << endl;
 	} else {
 		while (!ifs.eof()) {
+			string DNI;
 			getline(ifs, DNI, ';');
 			if (!ifs.eof()) {
+				string nombre;
 				getline(ifs, nombre, ';');
+				string apellidos;
 				getline(ifs, apellidos, ';');
-				getline(ifs, generoString, ';');
-				getline(ifs, edadString, '\n');
+				string genero;
+				getline(ifs, genero, ';');
+				string edad;
+				getline(ifs, edad, '\n');
+
 //				edad = stoi(edadString);
 //				genero = stoi(generoString);
-				Genero generoGen = Genero(stoi(generoString));
-				p = new Paciente(nombre, apellidos, DNI, generoGen,
-						stoi(edadString));
+//				Genero generoGen = Genero(stoi(genero));
+
+				p = new Paciente(nombre, apellidos, DNI, Genero(stoi(genero)),
+						stoi(edad));
 				this->VOV_Pacientes->insertarElemento(p);
 			}
 		}
